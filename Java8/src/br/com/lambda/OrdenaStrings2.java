@@ -11,9 +11,15 @@ public class OrdenaStrings2 {
 
 		//list.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
 
-		list.sort((s1, s2) -> s1.length() - s2.length());
+		//list.sort((s1, s2) -> s1.length() - s2.length());
 
-		list.forEach(s -> System.out.println(s));
+		//list.sort(Comparator.comparing(s -> s.length()));
+
+		//list.sort(Comparator.comparing(String::length));
+
+		list.sort(String.CASE_INSENSITIVE_ORDER);
+
+		list.forEach(System.out::println);
 
 		new Thread(() -> System.out.println("Executando um Runnable")).start();
 
