@@ -9,8 +9,13 @@ public class OrdenaStrings2 {
 
 		list.forEach(s -> System.out.println(s));
 
-		list.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+		//list.sort((s1, s2) -> Integer.compare(s1.length(), s2.length()));
+
+		list.sort((s1, s2) -> s1.length() - s2.length());
 
 		list.forEach(s -> System.out.println(s));
+
+		new Thread(() -> System.out.println("Executando um Runnable")).start();
+
 	}
 }
