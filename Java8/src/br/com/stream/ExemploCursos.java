@@ -3,6 +3,8 @@ package br.com.stream;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 class Curso {
 
@@ -44,8 +46,24 @@ public class ExemploCursos {
 		cursos.sort(Comparator.comparing(Curso::getAlunos));
 		cursos.forEach(c -> System.out.println(c.getNome()));
 		cursos.stream().filter(c -> c.getAlunos() > 100).map(Curso::getAlunos).forEach(System.out::println);
-		
+
 		int sum = cursos.stream().filter(c -> c.getAlunos() > 100).mapToInt(Curso::getAlunos).sum();
 		System.out.println(sum);
+
+		//Optional<Curso> optionalCurso = cursos.stream().filter(c -> c.getAlunos() >= 100).findAny();
+		//optionalCurso.ifPresent(c -> System.out.println(c.getNome()));
+
+		cursos.stream().filter(c -> c.getAlunos() >= 100).findAny().ifPresent(c -> System.out.println(c.getNome()));
+
+		List<Curso> listaCursos = cursos.stream().filter(c -> c.getAlunos() > 100).collect(Collectors.toList());
+		listaCursos.forEach(c -> System.out.println(c.getNome()));
+
+		//Map<String, Integer> mapCursos = cursos.stream().filter(c -> c.getAlunos() > 100).collect(Collectors.toMap(c -> c.getNome(), c -> c.getAlunos()));
+		//System.out.println(mapCursos);
+
+		cursos.stream().filter(c -> c.getAlunos() > 100).
+		collect(Collectors.toMap(c -> c.getNome(), c -> c.getAlunos())).
+		forEach((nome,alunos) -> System.out.println(nome+" tem "+ alunos+" alunos"));
+
 	}
 }
